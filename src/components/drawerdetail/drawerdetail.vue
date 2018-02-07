@@ -243,6 +243,7 @@ export default {
             border: 1px solid #a068f1
             color: #a068f1
             font-weight: bold
+            padding: 2px 3px
           .feed
             margin: 0 10px
             display: inline-block
