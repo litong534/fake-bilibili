@@ -82,13 +82,14 @@ function initApi(app) {
   });
   //focus/unfocus request
   app.get('/api/attention', (req, res) => {
+    const { uid, type } = req.query;
     axios({
       url: 'https://api.live.bilibili.com/liveact/attention',
       method: 'post',
       data: {
-        'uid': 5030761,
+        'uid': uid,
         'token': '',
-        'type': 1,
+        'type': type,//0-unfocus;1-focus
         'platform': 'pc',
         'csrf_token': '2e5be4799efb0f7d945849cc856f348c'
       },

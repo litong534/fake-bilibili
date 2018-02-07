@@ -125,11 +125,17 @@ export default {
       }
     },
     focus() {
-      axios.get("/api/attention").then(res => {
-        if (res.data.code === 0) {
-          this.user.feed.is_followed = !this.user.feed.is_followed;
-        }
-      });
+      axios
+        .get(
+          `/api/attention?uid=${this.$route.params.uid}&type=${
+            !this.user.feed.is_followed ? 1 : 0
+          }`
+        )
+        .then(res => {
+          if (res.data.code === 0) {
+            this.user.feed.is_followed = !this.user.feed.is_followed;
+          }
+        });
     },
     resizeIllustration() {
       const deviceWidth =
