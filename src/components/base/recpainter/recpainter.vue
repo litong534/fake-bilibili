@@ -1,6 +1,6 @@
 <template>
   <div id="recpainter" v-if="drawer">
-    <div class="header">推荐画师</div>
+    <c-title>推荐画师</c-title>
     <div class="painter_container">
       <div class="painter" v-for="d in drawer" :key="d.key">
         <router-link :to="`/paint/drawer/${d.uid}`">
@@ -16,7 +16,11 @@
 
 <script>
 import axios from "axios";
+import CTitle from "components/base/c-title/c-title";
 export default {
+  components: {
+    CTitle
+  },
   data() {
     return {
       drawer: undefined
@@ -34,10 +38,6 @@ export default {
 
 <style lang="stylus" scoped>
 #recpainter
-  .header
-    background: #fb6b55
-    padding: 5px 0 5px 5px
-    border-left: 5px solid #c0c46d
   .painter_container
     display: flex
     flex-flow: row wrap

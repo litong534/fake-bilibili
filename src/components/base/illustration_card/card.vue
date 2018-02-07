@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     imageClip(url) {
-      return url.replace('jpg','jpg@512w_384h_1e.webp');
+      return url.replace('jpg','jpg@512w_220h_1e.webp');
     },
     ill_detail() {
       this.$router.push(`/paint/detail/${this.illdata.item.doc_id}/${this.illdata.user.uid}`);
@@ -43,7 +43,7 @@ export default {
   margin-bottom: 10px
   .img_container
     width: 100%
-    padding-top: 200px
+    padding-top: 220px
     border-radius: 5px 5px 0 0
     overflow: hidden
     position: relative

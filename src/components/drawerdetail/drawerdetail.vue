@@ -38,14 +38,15 @@
             <div class="focus_btn" @click="focus" :class="user.feed.is_followed ? 'unfocus_btn': ''">{{user.feed.is_followed ? '取消关注' : '关注'}}</div>
           </div>
           <div>
-            <div class="header">直播间: {{user.room.title}}</div>
+            <c-title>直播间: {{user.room.title}}</c-title>
             <div class="room">
               <a :href="user.room.room_link">
                 <img :src="user.room.cover" alt="">
               </a>
             </div>
           </div>
-          <div class="header">相簿</div>
+          <div class="header"></div>
+          <c-title>相簿</c-title>
           <div class="illustration" :style="{'width': `${containerWidth}px`}">
             <div class="img_container" @click="showDetail(item.doc_id)" :style="{'width':`${illWidth}px`,'height':`${illWidth}px`}" v-for="item in drawerill" :key="item.key">
               <img class="ill" :src="imgFormatter(item.pictures[0].img_src)" alt="">
@@ -63,10 +64,12 @@
 import axios from "axios";
 import DHeader from "components/base/header/header";
 import Loading from "components/base/loading/loading";
+import CTitle from "components/base/c-title/c-title";
 export default {
   components: {
     Loading,
-    DHeader
+    DHeader,
+    CTitle
   },
   data() {
     return {
@@ -321,8 +324,6 @@ export default {
         background-color: rgba(35, 173, 229, 0.1)
         border: solid 1px #23ade5
         color: #23ade5
-    .header
-      header()
     .room
       width: 198px
       height: 124px
@@ -333,8 +334,6 @@ export default {
         width: inherit
         > img
           width: inherit
-    .header
-      header()
     .illustration
       margin: 0 auto
       overflow: hidden

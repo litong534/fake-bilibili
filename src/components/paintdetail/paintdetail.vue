@@ -25,7 +25,7 @@
                   <img style="width: 100%;margin: 0 auto;display: block;margin-bottom:10px" v-for="pic in detail.item.pictures" v-lazy="pic.img_src" :key="pic.key" alt="">
                 </div>
               </div>
-              <div class="header">热门评论</div>
+              <c-title>热门评论</c-title>
               <div class="comments">
                 <div class="comment_box" v-if="comments.hots || comments.hots.length !== 0" v-for="c in comments.hots" :key="c.key">
                   <div class="img_container">
@@ -41,7 +41,7 @@
                 </div>
                 <div v-if="!comments.hots || comments.hots.length === 0" class="noreply">暂无热门评论</div>
               </div>
-              <div class="header">评论</div>
+              <c-title>评论</c-title>
               <div class="comments">
                 <div class="comment_box" v-if="comments.replies || comments.replies.length !== 0" v-for="c in comments.replies" :key="c.key">
                   <div class="img_container">
@@ -85,12 +85,14 @@ import axios from "axios";
 import DHeader from "components/base/header/header";
 import Loading from "components/base/loading/loading";
 import Scroll from "components/base/scroll/scroll";
+import CTitle from "components/base/c-title/c-title";
 import { getComments } from "@/api/comment.js";
 export default {
   components: {
     Loading,
     DHeader,
-    Scroll
+    Scroll,
+    CTitle
   },
   data() {
     return {
@@ -194,8 +196,6 @@ export default {
           border: 1px solid #5896de
           color: #5896de
           font-weight: bold
-      .header
-        header()
       .comments
         .noreply
           font-size: 12px
@@ -237,6 +237,7 @@ export default {
               font-size: 12px
               color: #ddd
               margin-top: 5px
+              line-height: 15px
             .replies
               .img_container
                 min-width: 30px

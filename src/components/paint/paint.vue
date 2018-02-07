@@ -11,7 +11,7 @@
           </slider>
         </div>
         <rec-painter/>
-        <div class="ill_header" v-if="illustration">推荐作品</div>
+        <c-title v-if="illustration">推荐作品</c-title>
         <div class="ill_panel" v-if="illustration">
           <card v-for="i in illustration" :key="i.key" :illdata="i"></card>
         </div>
@@ -26,12 +26,14 @@ import Slider from "components/base/slider/slider";
 import RecPainter from "components/base/recpainter/recpainter";
 import Scroll from "components/base/scroll/scroll";
 import Card from "components/base/illustration_card/card";
+import CTitle from "components/base/c-title/c-title";
 export default {
   components: {
     Slider,
     RecPainter,
     Scroll,
-    Card
+    Card,
+    CTitle
   },
   data() {
     return {
@@ -96,8 +98,6 @@ export default {
     width: 100%
     overflow: hidden
     position: relative
-  .ill_header
-    header()
   .ill_panel
     padding: 10px
     box-sizing: border-box

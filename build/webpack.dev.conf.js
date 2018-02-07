@@ -12,7 +12,7 @@ const portfinder = require('portfinder')
 const axios = require('axios');
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
-const api = require('../src/api/api');
+const api = require('../src/api/allApis');
 const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap, usePostCSS: true })
@@ -23,7 +23,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   // these devServer options should be customized in /config/index.js
   devServer: {
     before(app) {
-      api(app);
+      api.paintApi(app);
+      api.rankApi(app);
     },
     clientLogLevel: 'warning',
     historyApiFallback: {
