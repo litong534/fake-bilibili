@@ -86,7 +86,7 @@ export default {
 @import '~common/stylus/index'
 #paint
   position: fixed
-  top: 81px
+  top: 91px
   bottom: 0
   left: 0
   right: 0

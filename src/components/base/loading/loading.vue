@@ -1,11 +1,27 @@
 <template>
   <div id="loading">
-    <img src="~@/assets/img_loading.png" width="64" alt="">
+    <img v-if="!is404" src="~@/assets/img_loading.png" width="64" alt="">
+    <div v-else>
+      <img src="~@/assets/empty-data.jpg" style="width: 100%" alt="">
+      <div class="btn" @click="goBack()">返回上一页</div>
+    </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    is404: {
+      type: Boolean,
+      default: false
+    }
+  },
+  methods: {
+    goBack() {
+      this.$router.go(-1);
+    }
+  }
+};
 </script>
 
 <style lang="stylus" scoped>
@@ -20,4 +36,15 @@ export default {};
   justify-content: center
   align-items: center
   background: $base_dark
+  .btn
+    width: 140px
+    height: 40px
+    border-radius: 5px
+    border: 2px solid #dd705c
+    color: #dd705c
+    background: #674b7c
+    text-align: center
+    line-height: 40px
+    font-weight: bold
+    margin: 10px auto 0
 </style>

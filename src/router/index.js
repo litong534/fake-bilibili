@@ -15,6 +15,16 @@ const DrawerDetail = (r) => {
     r(drawerdetail);
   });
 }
+const Rank = (r) => {
+  import('components/rank/rank').then(rank => {
+    r(rank);
+  });
+}
+const Activity = (r) => {
+  import('components/activity/activity').then(activity => {
+    r(activity);
+  });
+}
 Vue.use(Router);
 
 export default new Router({
@@ -42,6 +52,20 @@ export default new Router({
           ]
         }
       ]
+    },
+    {
+      path: '/rank',
+      component: Rank,
+      children: [
+        {
+          path:'detail/:id/:uid',
+          component: PaintDetail
+        }
+      ]
+    },
+    {
+      path: '/activity',
+      component: Activity
     }
   ]
 });

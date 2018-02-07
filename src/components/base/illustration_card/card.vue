@@ -21,6 +21,10 @@ export default {
     illdata: {
       type: Object,
       default: undefined
+    },
+    isRank: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
@@ -28,7 +32,7 @@ export default {
       return url.replace('jpg','jpg@512w_220h_1e.webp');
     },
     ill_detail() {
-      this.$router.push(`/paint/detail/${this.illdata.item.doc_id}/${this.illdata.user.uid}`);
+      this.isRank ? this.$router.push(`/rank/detail/${this.illdata.item.doc_id}/${this.illdata.user.uid}`) : this.$router.push(`/paint/detail/${this.illdata.item.doc_id}/${this.illdata.user.uid}`);
     }
   }
 };

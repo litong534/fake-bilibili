@@ -75,7 +75,7 @@
           </scroll>
         </div>
       </div>
-      <loading v-else></loading>
+      <loading v-else :is404="is404"></loading>
     </div>
   </transition>
 </template>
@@ -98,7 +98,8 @@ export default {
     return {
       detail: undefined,
       user: undefined,
-      comments: undefined
+      comments: undefined,
+      is404: false
     };
   },
   created() {
@@ -107,6 +108,8 @@ export default {
       .then(res => {
         if (res.data.code === 0) {
           this.detail = res.data.data;
+        } else if (res.data.code === 110001) {
+          this.is404 = true;
         }
       });
 
@@ -208,6 +211,7 @@ export default {
           justify-content: flex-start
           align-items: flex-start
           margin: 10px 0 10px
+          word-wrap: break-word
           .img_container
             min-width: 40px
             min-height: 40px

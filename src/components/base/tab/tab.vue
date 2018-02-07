@@ -1,7 +1,7 @@
 <template>
 <div id="tab">
   <router-link tag="div" replace to="/paint" class="tab-item">画友</router-link>
-  <router-link tag="div" replace to="photo" class="tab-item">摄影</router-link>
+  <!-- <router-link tag="div" replace to="photo" class="tab-item">摄影</router-link> -->
   <router-link tag="div" replace to="/rank" class="tab-item">排行榜</router-link>
   <router-link tag="div" replace to="/activity" class="tab-item">活动中心</router-link>
 </div>  

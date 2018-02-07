@@ -25,6 +25,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     before(app) {
       api.paintApi(app);
       api.rankApi(app);
+      api.actApi(app);
     },
     clientLogLevel: 'warning',
     historyApiFallback: {
