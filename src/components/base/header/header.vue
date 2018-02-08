@@ -33,8 +33,8 @@ export default {
 #b_header
   width: 100%
   background: #444
-  height: 40px
-  box-shadow: 0 2px 2px #222
+  height: 1.066666rem
+  box-shadow: 0 0.053333rem 0.053333rem #222
   display: flex
   align-items: center
   .space

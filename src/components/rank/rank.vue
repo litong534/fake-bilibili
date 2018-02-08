@@ -31,7 +31,7 @@ export default {
     };
   },
   created() {
-    axios.get("/api/rank").then(res => {
+    axios.get(`/api/rank`).then(res => {
       this.rank = res.data;
       this.rank_active = res.data.month.data.items;
     });
@@ -64,14 +64,14 @@ export default {
 <style lang="stylus" scoped>
 #rank
   .category
-    height: 60px
-    padding: 10px 0
+    height: 1.6rem
+    padding: 0.266666rem 0
     box-sizing: border-box
     .cate_panel
-      width: 200px
+      width: 5.333333rempx
       height: 100%
       margin: 0 auto
-      border-radius: 20px
+      border-radius: 0.533333rem
       border: 2px solid #bb828b
       background: #9357a9
       box-sizing: border-box
@@ -82,18 +82,18 @@ export default {
       .cate
         flex: 1
         text-align: center
-        line-height: 36px
+        line-height: 0.96rem
         height: 100%
         &.cate_active
           background: #bb828b
   .scroll
     position: absolute
-    top: 140px
+    top: 3.733333rem
     left: 0
     right: 0
     bottom: 0
     overflow-y: scroll
     .rank
-      padding: 0 10px 10px
+      padding: 0 0.266666rem 0.266666rem
       box-sizing: border-box
 </style>

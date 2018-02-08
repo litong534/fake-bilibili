@@ -22,7 +22,7 @@
                   </span>
                 </div>
                 <div class="imgs">
-                  <img style="width: 100%;margin: 0 auto;display: block;margin-bottom:10px" v-for="pic in detail.item.pictures" v-lazy="pic.img_src" :key="pic.key" alt="">
+                  <img style="width: 100%;margin: 0 auto;display: block;margin-bottom:0.266666rem" v-for="pic in detail.item.pictures" v-lazy="pic.img_src" :key="pic.key" alt="">
                 </div>
               </div>
               <c-title>热门评论</c-title>
@@ -140,7 +140,7 @@ export default {
   overflow-x: hidden
   .illustration
     position: fixed
-    top: 41px
+    top: 1.093333rem
     left: 0
     bottom: 0
     right: 0
@@ -149,32 +149,32 @@ export default {
       overflow: hidden
       .panel
         width: 100%
-        padding: 5px
+        padding: 0.133333rem
         box-sizing: border-box
       .main
         .title
           font-weight: bold
-          padding: 5px
+          padding: 0.133333rem
         .desc
-          font-size: 12px
-          padding: 5px
+          font-size: 0.32rem
+          padding: 0.133333rem
           color: #888
-          line-height: 15px
+          line-height: 0.4rem
         .tags
           width: 80%
           display: flex
           flex-flow: row wrap
           align-items: center
-          font-size: 12px
+          font-size: 0.32rem
           .tag
-            padding: 2px 10px
-            margin: 5px
-            border-radius: 7px
-            border: 1px solid #444
+            padding: 0.053333rem 0.266666rem
+            margin: 0.133333rem
+            border-radius: 0.186666rem
+            border: 0.026666 solid #444
             background: #444
             color: #eee
           .tag_link
-            border: 1px solid rgba(255, 148, 177, 0.4)
+            border: 0.026666rem solid rgba(255, 148, 177, 0.4)
             background: transparent
             > a
               color: #ff94b1
@@ -182,43 +182,43 @@ export default {
         display: flex
         align-items: center
         .img_container
-          width: 40px
-          height: 40px
+          width: 1.066666rem
+          height: 1.066666rem
           border-radius: 50%
-          border: 2px solid #fc6
+          border: 0.053333rem solid #fc6
           overflow: hidden
           > img
             width: 100%
         .drawer_name
-          margin-left: 10px
+          margin-left: 0.266666rem
         .drawer_level
-          margin-left: 5px
-          padding: 2px
-          border-radius: 2px
-          font-size: 12px
-          border: 1px solid #5896de
+          margin-left: 0.133333rem
+          padding: 0.053333rem
+          border-radius: 0.053333rem
+          font-size: 0.32rem
+          border: 0.026666rem solid #5896de
           color: #5896de
           font-weight: bold
       .comments
         .noreply
-          font-size: 12px
+          font-size: 0.32rem
           text-align: center
-          margin: 5px 0 5px
+          margin: 0.133333rem 0 0.133333rem
           color: #eee
         .comment_box
           display: flex
           flex-flow: row nowrap
           justify-content: flex-start
           align-items: flex-start
-          margin: 10px 0 10px
+          margin: 0.266666rem 0 0.266666rem
           word-wrap: break-word
           .img_container
-            min-width: 40px
-            min-height: 40px
-            max-width: 40px
-            max-height: 40px
+            min-width: 1.066666rem
+            min-height: 1.066666rem
+            max-width: 1.066666rem
+            max-height: 1.066666rem
             border-radius: 50%
-            border: 2px solid #fc6
+            border: 0.053333rem solid #fc6
             overflow: hidden
             > img
               width: 100%
@@ -227,27 +227,27 @@ export default {
             flex-flow: column nowrap
             justify-content: flex-start
             align-items: space-around
-            margin-left: 10px
+            margin-left: 0.266666rem
             .user_box
               .uname
                 display: inline-block
               .ulevel
                 display: inline-block
                 color: #9c7dd8
-                margin-left: 5px
-                font-size: 12px
+                margin-left: 0.133333rem
+                font-size: 0.32rem
                 font-weight: bold
             .comment
-              font-size: 12px
+              font-size: 0.32rem
               color: #ddd
-              margin-top: 5px
-              line-height: 15px
+              margin-top: 0.133333rem
+              line-height: 0.4rem
             .replies
               .img_container
-                min-width: 30px
-                min-height: 30px
-                max-width: 30px
-                max-height: 30px
+                min-width: 0.8rem
+                min-height: 0.8rem
+                max-width: 0.8rem
+                max-height: 0.8rem
 .slide-enter-active, .slide-leave-active
   transition: all 0.3s
 .slide-enter, .slide-leave-to

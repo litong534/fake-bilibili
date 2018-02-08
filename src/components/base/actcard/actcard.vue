@@ -36,15 +36,15 @@ export default {
 
 <style lang="stylus" scoped>
 #actcard
-  border-radius: 5px
+  border-radius: 0.133333rem
   background: #444
   box-sizing: border-box
   overflow: hidden
-  margin-bottom: 10px
+  margin-bottom: 0.266666rem
   .img_container
     width: 100%
-    padding-top: 210px
-    border-radius: 5px 5px 0 0
+    padding-top: 5.04rem
+    border-radius: 0.133333rem 0.133333rem 0 0
     overflow: hidden
     position: relative
     > img
@@ -58,15 +58,13 @@ export default {
     right: 0
     width: 100%
     background: rgba(0,0,0,0.3)
-    padding: 5px 10px 5px 0
+    padding: 0.133333rem 0.266666rem 0.133333rem 0
     text-align: right
   .act_intro
-    padding-left: 10px
+    padding-left: 0.266666rem
     box-sizing: border-box
     > div
-      margin: 5px
-    .title
-      font-size: 14px
+      margin: 0.133333rem
     .date
-      font-size: 12px
+      font-size: 0.32rem
 </style>

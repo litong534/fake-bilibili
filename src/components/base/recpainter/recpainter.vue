@@ -27,7 +27,7 @@ export default {
     };
   },
   created() {
-    axios.get("/api/drawer").then(res => {
+    axios.get(`/api/drawer`).then(res => {
       if (res.data.code === 0) {
         this.drawer = res.data.data;
       }
@@ -37,13 +37,14 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+@import '~common/stylus/index'
 #recpainter
   .painter_container
     display: flex
     flex-flow: row wrap
     align-items: center
     justify-content: flex-start
-    padding-bottom: 10px
+    padding-bottom: 0.266666rem
     .painter
       width: 33%
       display: flex
@@ -55,13 +56,15 @@ export default {
         align-items: center
         justify-content: center        
         .img_container
-          width: 40px
-          height: 40px
-          margin: 10px 0
+          width: 1.066666rem
+          height: 1.066666rem
+          margin: 0.266666rem 0
           border-radius: 50%
           border: 2px solid #fc6
           overflow: hidden
           >img
             width: 100%
             height: 100%
+        .painter_name
+          no-wrap()
 </style>

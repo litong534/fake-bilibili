@@ -11,6 +11,6 @@ export default {
 <style lang="stylus" scoped>
   .header
     background: #fb6b55
-    padding: 5px 0 5px 5px
-    border-left: 5px solid #c0c46d
+    padding: 0.133333rem 0 0.133333rem 0.133333rem
+    border-left: 0.133333rem solid #c0c46d
 </style>

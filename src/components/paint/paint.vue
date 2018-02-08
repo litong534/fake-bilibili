@@ -45,7 +45,7 @@ export default {
     };
   },
   created() {
-    axios.get("/api/getHeader").then(res => {
+    axios.get(`/api/getHeader`).then(res => {
       if (res.data.code === 0) {
         this.recommends = res.data.data[8];
       }

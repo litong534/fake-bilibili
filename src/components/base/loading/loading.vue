@@ -37,14 +37,14 @@ export default {
   align-items: center
   background: $base_dark
   .btn
-    width: 140px
-    height: 40px
-    border-radius: 5px
+    width: 3.733333rem
+    height: 1.066666rem
+    border-radius: 0.133333rem
     border: 2px solid #dd705c
     color: #dd705c
     background: #674b7c
     text-align: center
-    line-height: 40px
+    line-height: 1.066666rem
     font-weight: bold
-    margin: 10px auto 0
+    margin: 0.266666rem auto 0
 </style>

@@ -22,7 +22,7 @@ export default {
     };
   },
   created() {
-    axios.get("/api/center").then(res => {
+    axios.get(`/api/center`).then(res => {
       if(res.data.code === 0) {
         this.act = res.data.data.items;
       }
@@ -38,9 +38,9 @@ export default {
   left: 0
   right: 0
   bottom: 0
-  top: 90px
+  top: 2.4rem
   overflow-y: scroll
-  padding: 0 10px 10px
+  padding: 0 10px
   box-sizing: border-box
   .act_panel
     position: relative

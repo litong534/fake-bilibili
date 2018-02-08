@@ -48,7 +48,7 @@
           <div class="header"></div>
           <c-title>相簿</c-title>
           <div class="illustration" :style="{'width': `${containerWidth}px`}">
-            <div class="img_container" @click="showDetail(item.doc_id)" :style="{'width':`${illWidth}px`,'height':`${illWidth}px`}" v-for="item in drawerill" :key="item.key">
+            <div class="img_container" :style="{'width': `${img_width}px`, 'height': `${img_width}px`}" @click="showDetail(item.doc_id)" v-for="item in drawerill" :key="item.key">
               <img class="ill" :src="imgFormatter(item.pictures[0].img_src)" alt="">
             </div>
           </div>
@@ -115,10 +115,10 @@ export default {
       u.style.transform = `scale(${this.mathFormatter()})`;
       u.style.opacity = `${this.mathFormatter()}`;
       clearTimeout(timer);
-      if (this.$refs.main.scrollTop >= 200) {
+      if (this.$refs.main.scrollTop >= 225) {
         this.show = true;
         fix ? (fix.style.opacity = 1) : "";
-      } else if (this.$refs.main.scrollTop < 200) {
+      } else if (this.$refs.main.scrollTop < 225) {
         if (fix && this.show) {
           fix.style.opacity = 0;
           timer = setTimeout(() => {
@@ -143,14 +143,14 @@ export default {
     resizeIllustration() {
       const deviceWidth =
         document.body.clientWidth || document.documentElement.clientWidth;
-      this.illWidth = Math.floor((deviceWidth - 10) * 0.3);
-      this.containerWidth = this.illWidth * 3 + 30;
+        this.img_width = (document.body.clientWidth - 30) / 3;
+        this.containerWidth = this.img_width * 3 + 30;
     },
     imgFormatter(url) {
       return `${url}@400w_400h_1e_1c.webp`;
     },
     mathFormatter() {
-      return (200 - this.$refs.main.scrollTop) / 200;
+      return (225 - this.$refs.main.scrollTop) / 225;
     },
     showDetail(doc_id) {
       this.$router.push(`/paint/drawer/${this.user.uid}/detail/${doc_id}`);
@@ -172,14 +172,14 @@ export default {
   overflow-x: hidden
   .main
     position: fixed
-    top: 41px
+    top: 1.093333rem
     left: 0
     bottom: 0
     right: 0
     overflow-y: scroll
     .drawer_container
       position: relative
-      height: 300px
+      height: 8rem
       overflow: hidden
       display: flex
       flex-flow: column nowrap
@@ -188,7 +188,7 @@ export default {
       .drawer_bg
         width: 100%
         height: 0
-        padding-top: 300px
+        padding-top: 8rem
         position: absolute
         overflow: hidden
         > img
@@ -198,10 +198,10 @@ export default {
           width: 100%
           filter: blur(15px)
       .drawer_circle
-        width: 140px
-        height: 140px
+        width: 3.733333rem
+        height: 3.733333rem
         border-radius: 50%
-        border: 2px solid #fc6
+        border: 0.0533333 solid #fc6
         overflow: hidden
         filter: blur(0)
         transform-origin: 50% 0
@@ -220,37 +220,37 @@ export default {
         .focus_btn
           box-sizing: border-box
           margin: 0 auto
-          margin-top: 10px
-          width: 96px
-          height: 32px
-          line-height: 32px
+          margin-top: 0.266666rem
+          width: 2.56rem
+          height: 0.853333rem
+          line-height: 0.853333rem
           text-align: center
-          font-size: 14px
+          font-size: 0.373333rem
           color: #fff
           background-color: #23ade6
-          border-radius: 4px
+          border-radius: 0.106666rem
           cursor: pointer
         .unfocus_btn
           background-color: rgba(35, 173, 229, 0.1)
-          border: solid 1px #23ade5
+          border: solid 0.026666rem #23ade5
           color: #23ade5
         .grp
-          margin-top: 10px
+          margin-top: 0.266666rem
           &.grp_feed
             text-align: center
             width: 100%
           .level
-            margin: 0 10px
-            border-radius: 2px
-            font-size: 12px
+            margin: 0 0.266666rem
+            border-radius: 0.053333rem
+            font-size: 0.32rem
             border: 1px solid #a068f1
             color: #a068f1
             font-weight: bold
-            padding: 2px 3px
+            padding: 0.053333rem 0.08rem
           .feed
-            margin: 0 10px
+            margin: 0 0.266666rem
             display: inline-block
-            width: 100px
+            width: 2.66666rem
             white-space: nowrap
             &.left
               text-align: left
@@ -258,9 +258,9 @@ export default {
               text-align: right
     .drawer_container_fixed
       position: fixed
-      top: 40px
+      top: 1.066666rem
       left: 0
-      height: 100px
+      height: 2rem
       width: 100%
       background: #333
       display: flex
@@ -270,10 +270,10 @@ export default {
       transition: 0.3s all ease
       opacity: 0
       .drawer_circle
-        width: 40px
-        height: 40px
+        width: 1.066666rem
+        height: 1.066666rem
         border-radius: 50%
-        border: 2px solid #fc6
+        border: 0.053333rem solid #fc6
         overflow: hidden
         margin: 0 auto
         > img
@@ -285,23 +285,23 @@ export default {
         align-items: center
         margin: 0 auto
         .uname
-          margin-top: 10px
         .grp
-          margin-top: 10px
+          margin-top: 0.266666rem
           &.grp_feed
             text-align: center
             width: 100%
           .level
-            margin: 0 10px
-            border-radius: 2px
-            font-size: 12px
+            margin: 0 0.266666rem
+            border-radius: 0.053333rem
+            font-size: 0.32rem
             border: 1px solid #a068f1
             color: #a068f1
             font-weight: bold
+            padding: 0.053333rem 0.08rem
           .feed
-            margin: 0 10px
+            margin: 0 0.266666rem
             display: inline-block
-            width: 100px
+            width: 2.666666rem
             white-space: nowrap
             &.left
               text-align: left
@@ -310,25 +310,24 @@ export default {
       .focus_btn
         box-sizing: border-box
         margin: 0 auto
-        margin-top: 10px
-        width: 96px
-        height: 32px
-        line-height: 32px
+        width: 2.56rem
+        height: 0.853333rem
+        line-height: 0.853333rem
         text-align: center
-        font-size: 14px
+        font-size: 0.373333
         color: #fff
         background-color: #23ade6
-        border-radius: 4px
+        border-radius: 0.106666rem
         cursor: pointer
       .unfocus_btn
         background-color: rgba(35, 173, 229, 0.1)
-        border: solid 1px #23ade5
+        border: solid 0.026666rem #23ade5
         color: #23ade5
     .room
-      width: 198px
-      height: 124px
-      border-radius: 5px
-      margin: 10px auto 10px
+      width: 5.28rem
+      height: 3.306666rem
+      border-radius: 0.133333rem
+      margin: 0.266666rem auto 0.266666rem
       overflow: hidden
       > a
         width: inherit
@@ -339,7 +338,7 @@ export default {
       overflow: hidden
       .img_container
         float: left
-        border-radius: 5px
+        border-radius: 0.133333rem
         overflow: hidden
         margin: 5px
         .ill

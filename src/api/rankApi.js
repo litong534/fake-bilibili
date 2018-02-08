@@ -1,15 +1,16 @@
 const axios = require('axios');
+const common = require('./common');
 
 function _getMonthRank() {
-  return axios.get('https://api.vc.bilibili.com/link_draw/v2/Doc/rank?biz=1&rank_type=month&page_size=5');
+  return common.baseAxios.get('https://api.vc.bilibili.com/link_draw/v2/Doc/rank?biz=1&rank_type=month&page_size=5');
 }
 
 function _getWeekRank() {
-  return axios.get('https://api.vc.bilibili.com/link_draw/v2/Doc/rank?biz=1&rank_type=week&page_size=5');
+  return common.baseAxios.get('https://api.vc.bilibili.com/link_draw/v2/Doc/rank?biz=1&rank_type=week&page_size=5');
 }
 
 function _getDayRank() {
-  return axios.get('https://api.vc.bilibili.com/link_draw/v2/Doc/rank?biz=1&rank_type=day&page_size=5');
+  return common.baseAxios.get('https://api.vc.bilibili.com/link_draw/v2/Doc/rank?biz=1&rank_type=day&page_size=5');
 }
 
 

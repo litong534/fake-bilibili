@@ -40,15 +40,15 @@ export default {
 
 <style lang="stylus" scoped>
 #card
-  border-radius: 5px
+  border-radius: 0.133333rem
   background: #444
   box-sizing: border-box
   overflow: hidden
-  margin-bottom: 10px
+  margin-bottom: 0.266666rem
   .img_container
     width: 100%
-    padding-top: 220px
-    border-radius: 5px 5px 0 0
+    padding-top: 8rem
+    border-radius: 0.133333rem 0.133333rem 0 0
     overflow: hidden
     position: relative
     > img
@@ -57,9 +57,9 @@ export default {
       left: 0
       width: 100%
   .ill_name
-    padding: 5px 0 5px 5px
+    padding: 0.133333rem 0 0.133333rem 0.133333rem
   .drawer_intro
-    padding: 5px
+    padding: 0.133333rem
     box-sizing: border-box
     display: flex
     flex-flow: row nowrap
@@ -72,14 +72,13 @@ export default {
       justify-content: flex-start
       align-items: center
       .img_box
-        width: 30px
-        height: 30px
+        width: 0.8rem
+        height: 0.8rem
         overflow hidden
         border-radius: 50%
-        margin-right: 10px
+        margin-right: 0.133333rem
         > img
           width: 100%
-          heihgt: 100%
       .drawer_name
-        font-size: 12px
+        font-size: 0.32rem
 </style>

@@ -16,16 +16,16 @@ export default {
 <style lang="stylus" scoped>
 #tab 
   width: 100%
-  height: 40px
+  height: 1.066666rem
   display: flex
   flex-flow: row nowrap
   align-items center
   .tab-item 
     flex: 1
     text-align: center
-    line-height 40px
-    border-bottom: 1px solid transparent
+    line-height 1.066666rem
+    border-bottom: 0.026666rem solid transparent
     &.router-link-active
-      border-bottom: 1px solid #ffcc66
+      border-bottom: 0.026666rem solid #ffcc66
       
 </style>
