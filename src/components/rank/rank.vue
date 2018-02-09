@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import axios from "axios";
 import Card from "components/base/illustration_card/card";
+import {baseAxios} from "@/api/common";
 export default {
   components: {
     Card
@@ -31,7 +31,7 @@ export default {
     };
   },
   created() {
-    axios.get(`/api/rank`).then(res => {
+    baseAxios.get(`/rank`).then(res => {
       this.rank = res.data;
       this.rank_active = res.data.month.data.items;
     });
@@ -68,7 +68,7 @@ export default {
     padding: 0.266666rem 0
     box-sizing: border-box
     .cate_panel
-      width: 5.333333rempx
+      width: 5.333333rem
       height: 100%
       margin: 0 auto
       border-radius: 0.533333rem
@@ -93,6 +93,7 @@ export default {
     right: 0
     bottom: 0
     overflow-y: scroll
+    -webkit-overflow-scrolling : touch;  
     .rank
       padding: 0 0.266666rem 0.266666rem
       box-sizing: border-box

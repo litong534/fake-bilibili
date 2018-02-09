@@ -61,10 +61,10 @@
 </template>
 
 <script>
-import axios from "axios";
 import DHeader from "components/base/header/header";
 import Loading from "components/base/loading/loading";
 import CTitle from "components/base/c-title/c-title";
+import {baseAxios} from "@/api/common";
 export default {
   components: {
     Loading,
@@ -80,20 +80,20 @@ export default {
     };
   },
   created() {
-    axios.get(`/api/drawerdetail?uid=${this.$route.params.uid}`).then(res => {
+    baseAxios.get(`/drawerdetail?uid=${this.$route.params.uid}`).then(res => {
       if (res.data.code === 0) {
         this.drawerDetail = res.data.data;
       }
     });
 
-    axios.get(`/api/user?uid=${this.$route.params.uid}`).then(res => {
+    baseAxios.get(`/user?uid=${this.$route.params.uid}`).then(res => {
       if (res.data.code === 0) {
         this.user = res.data.data;
       }
     });
 
-    axios
-      .get(`/api/drawerillustration?uid=${this.$route.params.uid}`)
+    baseAxios
+      .get(`/drawerillustration?uid=${this.$route.params.uid}`)
       .then(res => {
         if (res.data.code === 0) {
           this.drawerill = res.data.data.items;
@@ -128,9 +128,9 @@ export default {
       }
     },
     focus() {
-      axios
+      baseAxios
         .get(
-          `/api/attention?uid=${this.$route.params.uid}&type=${
+          `/attention?uid=${this.$route.params.uid}&type=${
             !this.user.feed.is_followed ? 1 : 0
           }`
         )

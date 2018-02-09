@@ -81,12 +81,12 @@
 </template>
 
 <script>
-import axios from "axios";
 import DHeader from "components/base/header/header";
 import Loading from "components/base/loading/loading";
 import Scroll from "components/base/scroll/scroll";
 import CTitle from "components/base/c-title/c-title";
 import { getComments } from "@/api/comment.js";
+import {baseAxios} from "@/api/common";
 export default {
   components: {
     Loading,
@@ -103,8 +103,8 @@ export default {
     };
   },
   created() {
-    axios
-      .get(`/api/illustration/detail?doc_id=${this.$route.params.id}`)
+    baseAxios
+      .get(`/illustration/detail?doc_id=${this.$route.params.id}`)
       .then(res => {
         if (res.data.code === 0) {
           this.detail = res.data.data;
@@ -113,7 +113,7 @@ export default {
         }
       });
 
-    axios.get(`/api/user?uid=${this.$route.params.uid}`).then(res => {
+    baseAxios.get(`/user?uid=${this.$route.params.uid}`).then(res => {
       if (res.data.code === 0) {
         this.user = res.data.data;
       }

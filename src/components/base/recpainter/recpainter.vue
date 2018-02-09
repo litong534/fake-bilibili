@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import {baseAxios} from "@/api/common";
 import CTitle from "components/base/c-title/c-title";
 export default {
   components: {
@@ -27,7 +27,7 @@ export default {
     };
   },
   created() {
-    axios.get(`/api/drawer`).then(res => {
+    baseAxios.get(`/drawer`).then(res => {
       if (res.data.code === 0) {
         this.drawer = res.data.data;
       }

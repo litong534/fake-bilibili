@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import { baseAxios } from "@/api/common";
 import Loading from "components/base/loading/loading";
 import ActCard from "components/base/actcard/actcard";
 export default {
@@ -22,11 +22,10 @@ export default {
     };
   },
   created() {
-    axios.get(`/api/center`).then(res => {
-      if(res.data.code === 0) {
+    baseAxios.get(`/center`).then(res => {
+      if (res.data.code === 0) {
         this.act = res.data.data.items;
       }
-      console.log(this.act);
     });
   }
 };
@@ -42,6 +41,7 @@ export default {
   overflow-y: scroll
   padding: 0 10px
   box-sizing: border-box
+  -webkit-overflow-scrolling: touch
   .act_panel
     position: relative
 </style>

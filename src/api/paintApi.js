@@ -1,8 +1,9 @@
+const axios = require('axios');
 const common = require('./common');
 function initApi(app) {
   //slidershow data request 
   app.get('/api/getHeader', (req, res) => {
-    common.baseAxios({
+    axios({
       url: 'https://api.vc.bilibili.com/oper/v1/banner/getListOnline',
       method: 'post',
       data: {
@@ -27,14 +28,14 @@ function initApi(app) {
   });
   //not in use yet
   app.get('/api/activity', (req, res) => {
-    common.baseAxios.get('http://api.vc.bilibili.com/photo_activity/v2/Activity/list?type=0&biz=1&page_size=3')
+    axios.get('http://api.vc.bilibili.com/photo_activity/v2/Activity/list?type=0&biz=1&page_size=3')
       .then(response => {
         res.json(response.data);
       }).catch(e => console.log(e));
   });
   //recommend drawer data request
   app.get('/api/drawer', (req, res) => {
-    common.baseAxios.get('http://api.vc.bilibili.com/link_draw/v2/Doc/drawer?num=6')
+    axios.get('http://api.vc.bilibili.com/link_draw/v2/Doc/drawer?num=6')
       .then(response => {
         res.json(response.data);
       }).catch(e => console.log(e));
@@ -42,7 +43,7 @@ function initApi(app) {
   //recommend illustration data request with infinity loading
   app.get('/api/recommends', (req, res) => {
     const pageNum = req.query.page;
-    common.baseAxios.get(`https://api.vc.bilibili.com/link_draw/v2/Doc/list?category=all&type=hot&page_num=${pageNum}&page_size=30`)
+    axios.get(`https://api.vc.bilibili.com/link_draw/v2/Doc/list?category=all&type=hot&page_num=${pageNum}&page_size=30`)
       .then(response => {
         res.json(response.data);
       }).catch(e => console.log(e));
@@ -50,7 +51,7 @@ function initApi(app) {
   //illustration detail data request
   app.get('/api/illustration/detail', (req, res) => {
     const doc_id = req.query.doc_id;
-    common.baseAxios.get(`http://api.vc.bilibili.com/link_draw/v1/doc/detail?doc_id=${doc_id}`)
+    axios.get(`http://api.vc.bilibili.com/link_draw/v1/doc/detail?doc_id=${doc_id}`)
       .then(response => {
         res.json(response.data);
       }).catch(e => console.log(e));
@@ -58,7 +59,7 @@ function initApi(app) {
   //user data request query with uid
   app.get('/api/user', (req, res) => {
     const uid = req.query.uid;
-    common.baseAxios({
+    axios({
       url: `http://api.vc.bilibili.com/user_ex/v1/user/detail?user[]=info&user[]=level&room[]=live_status&room[]=room_link&feed[]=fans_count&feed[]=feed_count&feed[]=is_followed&uid=${uid}`,
       method: 'get',
       headers: common.HEADERS
@@ -70,7 +71,7 @@ function initApi(app) {
   //drawer homepage data requrest
   app.get('/api/drawerdetail', (req, res) => {
     const uid = req.query.uid;
-    common.baseAxios({
+    axios({
       url: `https://api.live.bilibili.com/user/v1/User/get?uid=${uid}&platform=pc`,
       method: 'get',
       headers: common.HEADERS
@@ -82,7 +83,7 @@ function initApi(app) {
   //focus/unfocus request
   app.get('/api/attention', (req, res) => {
     const { uid, type } = req.query;
-    common.baseAxios({
+    axios({
       url: 'https://api.live.bilibili.com/liveact/attention',
       method: 'post',
       data: {
@@ -113,7 +114,7 @@ function initApi(app) {
   //drawer homepage illustration data requrest
   app.get('/api/drawerillustration', (req, res) => {
     const uid = req.query.uid;
-    common.baseAxios({
+    axios({
       url: `https://api.vc.bilibili.com/link_draw/v1/doc/ones?poster_uid=${uid}&page_size=20&next_offset=0&noFav=1&noLike=1&platform=pc`,
       method: 'get',
       headers: common.HEADERS
