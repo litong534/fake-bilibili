@@ -1,6 +1,6 @@
 <template>
   <transition name="slide">
-    <div id="drawer_detail" @touchmove.stop>
+    <div id="drawer_detail">
       <d-header :needsBack="true" title="作品详情"></d-header>
       <div ref="d_fix" v-if="show" class="drawer_container_fixed">
         <div class="drawer_circle">
@@ -78,8 +78,7 @@ export default {
       drawerDetail: undefined,
       user: undefined,
       drawerill: undefined,
-      show: false,
-      scrollFlg: false
+      show: false
     };
   },
   created() {
@@ -109,7 +108,6 @@ export default {
     onScroll(pos) {
       let fix = this.$refs.d_fix;
       let timer;
-      this.scrollFlg = true;
       if (-pos.y >= 225) {
         this.show = true;
         fix ? (fix.style.opacity = 1) : "";
@@ -119,9 +117,6 @@ export default {
           this.show = false;
         }
       }
-    },
-    onScrollEnd() {
-      this.scrollFlg = false;
     },
     focus() {
       baseAxios
@@ -146,7 +141,6 @@ export default {
       return (225 - this.$refs.main.scrollTop) / 225;
     },
     showDetail(doc_id) {
-      if(this.scrollFlg) return;
       this.$router.push(`/paint/drawer/${this.user.uid}/detail/${doc_id}`);
     }
   }

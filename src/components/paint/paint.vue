@@ -17,8 +17,8 @@
         <card v-for="i in illustration" :key="i.key" :illdata="i"></card>
       </div>
     </div>
-    <router-view/>
   </scroll>
+  <router-view/>
 </div>
 </template>
 

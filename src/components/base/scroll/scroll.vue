@@ -43,8 +43,7 @@ export default {
             this.scroll = new BScroll(this.$refs.wrapper, {
                 probeType: this.probeType,
                 click: this.click,
-                pullUpLoad: this.pullUpload,
-                bindToWrapper: true
+                pullUpLoad: this.pullUpload
             });
 
             if (this.listenScroll) {
@@ -58,9 +57,9 @@ export default {
                 this.$emit('pullingUp');
             })
 
-            this.scroll.on('scrollEnd', () => {
-                this.$emit('scrollEnd');
-            })
+            // this.scroll.on('scrollEnd', () => {
+            //     this.$emit('scrollEnd');
+            // })
         },
         enable() {
             this.scroll && this.scroll.enable();

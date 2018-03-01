@@ -1,6 +1,6 @@
 <template>
   <transition name="slide">
-    <div id="paint_detail" @touchmove.stop>
+    <div id="paint_detail">
       <div v-if="detail && user && comments">
         <d-header :needsBack="true" title="作品详情"></d-header>
         <div class="illustration">
