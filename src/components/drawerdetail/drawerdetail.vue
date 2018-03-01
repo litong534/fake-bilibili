@@ -1,8 +1,21 @@
 <template>
   <transition name="slide">
-    <div id="drawer_detail">
+    <div id="drawer_detail" @touchmove.stop>
       <d-header :needsBack="true" title="作品详情"></d-header>
-      <div class="main" ref="main" @scroll="onScroll" v-if="drawerDetail && user && drawerill">
+      <div ref="d_fix" v-if="show" class="drawer_container_fixed">
+        <div class="drawer_circle">
+          <img :src="drawerDetail.face" alt="">
+        </div>
+        <div class="userinfo">
+          <span class="uname">{{drawerDetail.uname}}</span>
+          <span class="grp">
+            <span class="level">UL {{user.user.user_level}}</span>
+            <span class="level">UP {{user.user.master_level}}</span>
+          </span>
+        </div>
+        <div class="focus_btn" @click="focus" :class="user.feed.is_followed ? 'unfocus_btn': ''">{{user.feed.is_followed ? '取消关注' : '关注'}}</div>
+      </div>
+      <scroll :probeType="3" :listen-scroll="true" class="main" ref="main" @scroll="onScroll" v-if="drawerDetail && user && drawerill">
         <div ref="scroll">
           <div ref="d_cont" class="drawer_container">
             <div class="drawer_bg">
@@ -24,19 +37,6 @@
               <div class="focus_btn" @click="focus" :class="user.feed.is_followed ? 'unfocus_btn': ''">{{user.feed.is_followed ? '取消关注' : '关注'}}</div>
             </div>
           </div>
-          <div ref="d_fix" v-if="show" class="drawer_container_fixed">
-            <div class="drawer_circle">
-              <img :src="drawerDetail.face" alt="">
-            </div>
-            <div class="userinfo">
-              <span class="uname">{{drawerDetail.uname}}</span>
-              <span class="grp">
-                <span class="level">UL {{user.user.user_level}}</span>
-                <span class="level">UP {{user.user.master_level}}</span>
-              </span>
-            </div>
-            <div class="focus_btn" @click="focus" :class="user.feed.is_followed ? 'unfocus_btn': ''">{{user.feed.is_followed ? '取消关注' : '关注'}}</div>
-          </div>
           <div>
             <c-title>直播间: {{user.room.title}}</c-title>
             <div class="room">
@@ -49,11 +49,11 @@
           <c-title>相簿</c-title>
           <div class="illustration" :style="{'width': `${containerWidth}px`}">
             <div class="img_container" :style="{'width': `${img_width}px`, 'height': `${img_width}px`}" @click="showDetail(item.doc_id)" v-for="item in drawerill" :key="item.key">
-              <img class="ill" :src="imgFormatter(item.pictures[0].img_src)" alt="">
+              <img class="ill" :src="item.pictures[0].img_src" alt="">
             </div>
           </div>
         </div>
-      </div>
+      </scroll>
       <loading v-else></loading>
       <router-view/>
     </div>
@@ -65,11 +65,13 @@ import DHeader from "components/base/header/header";
 import Loading from "components/base/loading/loading";
 import CTitle from "components/base/c-title/c-title";
 import {baseAxios} from "@/api/common";
+import Scroll from "components/base/scroll/scroll";
 export default {
   components: {
     Loading,
     DHeader,
-    CTitle
+    CTitle,
+    Scroll
   },
   data() {
     return {
@@ -103,27 +105,16 @@ export default {
     this.resizeIllustration();
   },
   methods: {
-    onScroll() {
-      let circle = this.$refs.circle;
-      let u = this.$refs.uinfo;
+    onScroll(pos) {
       let fix = this.$refs.d_fix;
       let timer;
-      circle.style.transform = `translate3d(0,${
-        this.$refs.main.scrollTop
-      }px,0) scale(${this.mathFormatter()})`;
-      circle.style.opacity = `${this.mathFormatter()}`;
-      u.style.transform = `scale(${this.mathFormatter()})`;
-      u.style.opacity = `${this.mathFormatter()}`;
-      clearTimeout(timer);
-      if (this.$refs.main.scrollTop >= 225) {
+      if (-pos.y >= 225) {
         this.show = true;
         fix ? (fix.style.opacity = 1) : "";
-      } else if (this.$refs.main.scrollTop < 225) {
+      } else if (-pos.y < 225) {
         if (fix && this.show) {
           fix.style.opacity = 0;
-          timer = setTimeout(() => {
-            this.show = false;
-          });
+          this.show = false;
         }
       }
     },
@@ -146,9 +137,6 @@ export default {
         this.img_width = (document.body.clientWidth - 30) / 3;
         this.containerWidth = this.img_width * 3 + 30;
     },
-    imgFormatter(url) {
-      return `${url}@400w_400h_1e_1c.webp`;
-    },
     mathFormatter() {
       return (225 - this.$refs.main.scrollTop) / 225;
     },
@@ -169,20 +157,88 @@ export default {
   right: 0
   z-index: 100
   background: #222
-  overflow-x: hidden
+  .drawer_container_fixed
+    position: fixed
+    top: 1.066666rem
+    left: 0
+    height: 2rem
+    width: 100%
+    background: #333
+    display: flex
+    flex-flow: row nowrap
+    align-items: center
+    justify-content: flex-start
+    transition: 0.3s all ease
+    opacity: 0
+    z-index: 101
+    .drawer_circle
+      width: 1.066666rem
+      height: 1.066666rem
+      border-radius: 50%
+      border: 0.053333rem solid #fc6
+      overflow: hidden
+      margin: 0 auto
+      > img
+        width: 100%
+    .userinfo
+      display: flex
+      flex-flow: column nowrap
+      justify-content: center
+      align-items: center
+      margin: 0 auto
+      .uname
+      .grp
+        margin-top: 0.266666rem
+        &.grp_feed
+          text-align: center
+          width: 100%
+        .level
+          margin: 0 0.266666rem
+          border-radius: 0.053333rem
+          font-size: 0.32rem
+          border: 1px solid #a068f1
+          color: #a068f1
+          font-weight: bold
+          padding: 0.053333rem 0.08rem
+        .feed
+          margin: 0 0.266666rem
+          display: inline-block
+          width: 2.666666rem
+          white-space: nowrap
+          &.left
+            text-align: left
+          &.right
+            text-align: right
+    .focus_btn
+      box-sizing: border-box
+      margin: 0 auto
+      width: 2.56rem
+      height: 0.853333rem
+      line-height: 0.853333rem
+      text-align: center
+      font-size: 0.373333
+      color: #fff
+      background-color: #23ade6
+      border-radius: 0.106666rem
+      cursor: pointer
+    .unfocus_btn
+      background-color: rgba(35, 173, 229, 0.1)
+      border: solid 0.026666rem #23ade5
+      color: #23ade5
   .main
     position: fixed
     top: 1.093333rem
     left: 0
     bottom: 0
     right: 0
-    overflow-y: scroll
+    overflow: hidden
     .drawer_container
       position: relative
       height: 8rem
       overflow: hidden
       display: flex
-      flex-flow: column nowrap
+      flex-direction: column
+      flex-wrap: nowrap
       align-items: center
       justify-content: center
       .drawer_bg
@@ -190,20 +246,22 @@ export default {
         height: 0
         padding-top: 8rem
         position: absolute
+        top: 0
+        left: 0
         overflow: hidden
         > img
           position: absolute
-          top: 0
+          top: -10px
           left: 0
           width: 100%
+          z-index: -1
           filter: blur(15px)
       .drawer_circle
         width: 3.733333rem
         height: 3.733333rem
         border-radius: 50%
-        border: 0.0533333 solid #fc6
+        border: 0.0533333rem solid #fc6
         overflow: hidden
-        filter: blur(0)
         transform-origin: 50% 0
         > img
           width: 100%
@@ -256,73 +314,6 @@ export default {
               text-align: left
             &.right
               text-align: right
-    .drawer_container_fixed
-      position: fixed
-      top: 1.066666rem
-      left: 0
-      height: 2rem
-      width: 100%
-      background: #333
-      display: flex
-      flex-flow: row nowrap
-      align-items: center
-      justify-content: flex-start
-      transition: 0.3s all ease
-      opacity: 0
-      .drawer_circle
-        width: 1.066666rem
-        height: 1.066666rem
-        border-radius: 50%
-        border: 0.053333rem solid #fc6
-        overflow: hidden
-        margin: 0 auto
-        > img
-          width: 100%
-      .userinfo
-        display: flex
-        flex-flow: column nowrap
-        justify-content: center
-        align-items: center
-        margin: 0 auto
-        .uname
-        .grp
-          margin-top: 0.266666rem
-          &.grp_feed
-            text-align: center
-            width: 100%
-          .level
-            margin: 0 0.266666rem
-            border-radius: 0.053333rem
-            font-size: 0.32rem
-            border: 1px solid #a068f1
-            color: #a068f1
-            font-weight: bold
-            padding: 0.053333rem 0.08rem
-          .feed
-            margin: 0 0.266666rem
-            display: inline-block
-            width: 2.666666rem
-            white-space: nowrap
-            &.left
-              text-align: left
-            &.right
-              text-align: right
-      .focus_btn
-        box-sizing: border-box
-        margin: 0 auto
-        width: 2.56rem
-        height: 0.853333rem
-        line-height: 0.853333rem
-        text-align: center
-        font-size: 0.373333
-        color: #fff
-        background-color: #23ade6
-        border-radius: 0.106666rem
-        cursor: pointer
-      .unfocus_btn
-        background-color: rgba(35, 173, 229, 0.1)
-        border: solid 0.026666rem #23ade5
-        color: #23ade5
     .room
       width: 5.28rem
       height: 3.306666rem

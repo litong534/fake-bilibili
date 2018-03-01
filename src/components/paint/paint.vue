@@ -1,5 +1,6 @@
 <template>
-  <div id="paint" ref="paint">
+<div id="paint">
+  <scroll :pullUpload="pullUploadObj" @pullingUp="upLoad" class="paint-content" ref="paint">
     <div ref="scroll">
       <div class="slider-wrapper" v-if="recommends">
         <slider>
@@ -17,7 +18,8 @@
       </div>
     </div>
     <router-view/>
-  </div>
+  </scroll>
+</div>
 </template>
 
 <script>
@@ -41,7 +43,10 @@ export default {
       illustration: undefined,
       listenScroll: true,
       page: 1,
-      isLoading: false
+      isLoading: false,
+      pullUploadObj: {
+        threshold: 10000
+      }
     };
   },
   created() {
@@ -53,18 +58,8 @@ export default {
     this.getRecommends(this.page);
   },
   methods: {
-    onScroll() {
-      this.reLoadHeight =
-        ((this.$refs.scroll.clientHeight - this.$refs.paint.clientHeight) *
-          0.6) |
-        0;
-      if (
-        -this.$refs.scroll.getBoundingClientRect().top > this.reLoadHeight &&
-        this.isLoading === false
-      ) {
-        this.isLoading = true;
-        this.getRecommends(++this.page);
-      }
+    upLoad() {
+      this.getRecommends(++this.page);
     },
     getRecommends(page) {
       baseAxios.get(`/recommends?page=${page}`).then(res => {
@@ -79,12 +74,6 @@ export default {
         }
       });
     }
-  },
-  mounted() {
-    this.$refs.paint.addEventListener("scroll", this.onScroll, false);
-  },
-  destroyed() {
-    this.$refs.paint.removeEventListener("scroll", this.onScroll, false);
   }
 };
 </script>
@@ -97,16 +86,14 @@ export default {
   bottom: 0
   left: 0
   right: 0
-  overflow-y: scroll
-  -webkit-overflow-scrolling: touch
-  .scroll
+  .paint-content
     height: 100%
-    overflow: hidden
-  .slider-wrapper
-    width: 100%
-    overflow: hidden
-    position: relative
-  .ill_panel
-    padding: 10px
-    box-sizing: border-box
+    overflow: hidden    
+    .slider-wrapper
+      width: 100%
+      overflow: hidden
+      position: relative
+    .ill_panel
+      padding: 10px
+      box-sizing: border-box
 </style>

@@ -73,7 +73,8 @@
   },
   "browserslist": [
     "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
+    "last 20 versions",
+    "not ie <= 8",
+    "iOS 7"
   ]
 }

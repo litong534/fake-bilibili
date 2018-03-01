@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" @touchmove.prevent>
     <b-header/>
     <tab/>
       <keep-alive>
@@ -21,5 +21,4 @@ export default {
 
 <style lang="stylus">
 @import '~common/stylus/index'
-
 </style>

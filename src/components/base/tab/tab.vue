@@ -15,8 +15,9 @@ export default {
 
 <style lang="stylus" scoped>
 #tab 
+  position: relative
   width: 100%
-  height: 1.066666rem
+  height: 1.266666rem
   display: flex
   flex-flow: row nowrap
   align-items center

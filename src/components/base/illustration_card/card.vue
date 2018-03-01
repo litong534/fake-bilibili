@@ -1,7 +1,7 @@
 <template>
   <div id="card" @click="ill_detail">
     <div class="img_container">
-      <img :src="imageClip(illdata.item.pictures[0].img_src)" alt="">
+      <img :src="illdata.item.pictures[0].img_src" alt="">
     </div>
     <div class="ill_name">{{illdata.item.title}}</div>
     <div class="drawer_intro">
@@ -28,9 +28,6 @@ export default {
     }
   },
   methods: {
-    imageClip(url) {
-      return url.replace('jpg','jpg@512w_220h_1e.webp');
-    },
     ill_detail() {
       this.isRank ? this.$router.push(`/rank/detail/${this.illdata.item.doc_id}/${this.illdata.user.uid}`) : this.$router.push(`/paint/detail/${this.illdata.item.doc_id}/${this.illdata.user.uid}`);
     }

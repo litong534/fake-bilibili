@@ -7,11 +7,11 @@
         <div class="cate" @click="changeCate(2)" :class="cate_index === 2 ? 'cate_active': ''">新人榜</div>
       </div>
     </div>
-    <div class="scroll">
+    <scroll class="scroll">
       <div class="rank">
         <card v-for="i in rank_active" :key="i.key" :isRank="true" :illdata="i"></card>
       </div>
-    </div>
+    </scroll>
     <router-view/>
   </div>
 </template>
@@ -19,9 +19,11 @@
 <script>
 import Card from "components/base/illustration_card/card";
 import {baseAxios} from "@/api/common";
+import Scroll from "components/base/scroll/scroll";
 export default {
   components: {
-    Card
+    Card,
+    Scroll
   },
   data() {
     return {
@@ -92,8 +94,7 @@ export default {
     left: 0
     right: 0
     bottom: 0
-    overflow-y: scroll
-    -webkit-overflow-scrolling : touch;  
+    overflow hidden
     .rank
       padding: 0 0.266666rem 0.266666rem
       box-sizing: border-box

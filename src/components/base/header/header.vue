@@ -31,6 +31,7 @@ export default {
 <style lang="stylus" scoped>
 @import '~common/stylus/index'
 #b_header
+  position: relative
   width: 100%
   background: #444
   height: 1.066666rem

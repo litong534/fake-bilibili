@@ -10,7 +10,7 @@ let baseAxios;
 
 if(process.env.NODE_ENV === 'production') {
   baseAxios = axios.create({
-    baseURL: '<your server request>',
+    baseURL: '<your server request url>',
     timeout: 5000,
   });  
 } else {

@@ -20,6 +20,10 @@ export default {
             type: Array,
             default: null
         },
+        pullUpload: {
+            type: Object,
+            default: null
+        },
         listenScroll: {
             type: Boolean,
             default: false
@@ -38,7 +42,9 @@ export default {
 
             this.scroll = new BScroll(this.$refs.wrapper, {
                 probeType: this.probeType,
-                click: this.click
+                click: this.click,
+                pullUpLoad: this.pullUpload,
+                bindToWrapper: true
             });
 
             if (this.listenScroll) {
@@ -47,6 +53,10 @@ export default {
                     me.$emit('scroll', pos);
                 });
             }
+
+            this.scroll.on('pullingUp', () => {
+                this.$emit('pullingUp')
+            })
         },
         enable() {
             this.scroll && this.scroll.enable();

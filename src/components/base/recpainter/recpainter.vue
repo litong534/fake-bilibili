@@ -40,8 +40,10 @@ export default {
 @import '~common/stylus/index'
 #recpainter
   .painter_container
+    width: 100%
     display: flex
-    flex-flow: row wrap
+    flex-direction: row
+    flex-wrap: wrap
     align-items: center
     justify-content: flex-start
     padding-bottom: 0.266666rem

@@ -1,6 +1,6 @@
 <template>
   <transition name="slide">
-    <div id="paint_detail">
+    <div id="paint_detail" @touchmove.stop>
       <div v-if="detail && user && comments">
         <d-header :needsBack="true" title="作品详情"></d-header>
         <div class="illustration">
@@ -135,9 +135,8 @@ export default {
   left: 0
   bottom: 0
   right: 0
-  z-index: 100
+  z-index: 102
   background: #222
-  overflow-x: hidden
   .illustration
     position: fixed
     top: 1.093333rem
@@ -167,10 +166,12 @@ export default {
           align-items: center
           font-size: 0.32rem
           .tag
-            padding: 0.053333rem 0.266666rem
+            padding: 0.093333rem 0.266666rem 0.043333rem
             margin: 0.133333rem
-            border-radius: 0.186666rem
-            border: 0.026666 solid #444
+            border-radius: 0.386666rem
+            border: 0.026666rem solid #444
+            box-sizing: border-box
+            line-height: 0.333333rem
             background: #444
             color: #eee
           .tag_link
