@@ -121,7 +121,6 @@ export default {
 
     getComments(this.$route.params.id).then(res => {
       this.comments = res.data;
-      console.log(this.comments);
     });
   }
 };

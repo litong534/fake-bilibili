@@ -15,7 +15,7 @@
         </div>
         <div class="focus_btn" @click="focus" :class="user.feed.is_followed ? 'unfocus_btn': ''">{{user.feed.is_followed ? '取消关注' : '关注'}}</div>
       </div>
-      <scroll :probeType="3" :listen-scroll="true" class="main" ref="main" @scroll="onScroll" v-if="drawerDetail && user && drawerill">
+      <scroll :probeType="3" :listen-scroll="true" @scrollEnd="onScrollEnd" class="main" ref="main" @scroll="onScroll" v-if="drawerDetail && user && drawerill">
         <div ref="scroll">
           <div ref="d_cont" class="drawer_container">
             <div class="drawer_bg">
@@ -78,7 +78,8 @@ export default {
       drawerDetail: undefined,
       user: undefined,
       drawerill: undefined,
-      show: false
+      show: false,
+      scrollFlg: false
     };
   },
   created() {
@@ -108,6 +109,7 @@ export default {
     onScroll(pos) {
       let fix = this.$refs.d_fix;
       let timer;
+      this.scrollFlg = true;
       if (-pos.y >= 225) {
         this.show = true;
         fix ? (fix.style.opacity = 1) : "";
@@ -117,6 +119,9 @@ export default {
           this.show = false;
         }
       }
+    },
+    onScrollEnd() {
+      this.scrollFlg = false;
     },
     focus() {
       baseAxios
@@ -141,6 +146,7 @@ export default {
       return (225 - this.$refs.main.scrollTop) / 225;
     },
     showDetail(doc_id) {
+      if(this.scrollFlg) return;
       this.$router.push(`/paint/drawer/${this.user.uid}/detail/${doc_id}`);
     }
   }
