@@ -13,19 +13,19 @@ export default {
   props: {
     title: {
       type: String,
-      default: "假bilibili分站--(゜-゜)つロ 干杯~"
+      default: '假bilibili分站--(゜-゜)つロ 干杯~'
     },
-    needsBack : {
+    needsBack: {
       type: Boolean,
       default: false
     }
   },
   methods: {
     goBack() {
-      this.$router.go(-1);
+      this.$router.go(-1)
     }
   }
-};
+}
 </script>
 
 <style lang="stylus" scoped>

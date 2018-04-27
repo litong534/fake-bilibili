@@ -22,16 +22,16 @@ export default {
     }
   },
   methods: {
-    imageClip(url) {
-      return url.replace("jpg", "jpg@512w_240h_1e.webp");
+    imageClip(url, width = 512, height = 240) {
+      return url.replace(/(jpg)|(png)|(gif) \1 \2 \3/, '$1$2$3' + `@${width}w_${height}h_1e.webp`)
     },
     timeFormat(time) {
-      let date = new Date(parseInt(time) * 1000).toLocaleDateString();
-      let dateArr = date.split("/");
-      return `${dateArr[0]}年${dateArr[1]}月${dateArr[2]}日`;
+      let date = new Date(parseInt(time) * 1000).toLocaleDateString()
+      let dateArr = date.split('/')
+      return `${dateArr[0]}年${dateArr[1]}月${dateArr[2]}日`
     }
   }
-};
+}
 </script>
 
 <style lang="stylus" scoped>
@@ -57,7 +57,7 @@ export default {
     top: 0
     right: 0
     width: 100%
-    background: rgba(0,0,0,0.3)
+    background: rgba(0, 0, 0, 0.3)
     padding: 0.133333rem 0.266666rem 0.133333rem 0
     text-align: right
   .act_intro

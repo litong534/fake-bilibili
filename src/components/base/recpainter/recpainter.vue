@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import {baseAxios} from "@/api/common";
-import CTitle from "components/base/c-title/c-title";
+import { baseAxios } from '@/api/common'
+import CTitle from 'components/base/c-title/c-title'
 export default {
   components: {
     CTitle
@@ -24,16 +24,16 @@ export default {
   data() {
     return {
       drawer: undefined
-    };
+    }
   },
   created() {
     baseAxios.get(`/drawer`).then(res => {
       if (res.data.code === 0) {
-        this.drawer = res.data.data;
+        this.drawer = res.data.data
       }
-    });
+    })
   }
-};
+}
 </script>
 
 <style lang="stylus" scoped>
@@ -56,7 +56,7 @@ export default {
         display: flex
         flex-flow: column nowrap
         align-items: center
-        justify-content: center        
+        justify-content: center
         .img_container
           width: 1.066666rem
           height: 1.066666rem

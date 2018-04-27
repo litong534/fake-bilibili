@@ -1,13 +1,13 @@
 <template>
   <div id="card" @click="ill_detail">
-    <div class="img_container">
-      <img :src="illdata.item.pictures[0].img_src" alt="">
+    <div class="img_container" :style="`background:url(${imageClip(illdata.item.pictures[0].img_src)}) no-repeat`">
+      <!-- <img :src="illdata.item.pictures[0].img_src" alt=""> -->
     </div>
     <div class="ill_name">{{illdata.item.title}}</div>
     <div class="drawer_intro">
       <div class="drawer_box">
         <div class="img_box">
-          <img v-lazy="illdata.user.head_url" alt="">
+          <img :src="imageClip(illdata.user.head_url, 100, 100)" alt="">
         </div>
         <div class="drawer_name">{{illdata.user.name}}</div>
       </div>
@@ -29,10 +29,19 @@ export default {
   },
   methods: {
     ill_detail() {
-      this.isRank ? this.$router.push(`/rank/detail/${this.illdata.item.doc_id}/${this.illdata.user.uid}`) : this.$router.push(`/paint/detail/${this.illdata.item.doc_id}/${this.illdata.user.uid}`);
+      this.isRank
+        ? this.$router.push(
+          `/rank/detail/${this.illdata.item.doc_id}/${this.illdata.user.uid}`
+        )
+        : this.$router.push(
+          `/paint/detail/${this.illdata.item.doc_id}/${this.illdata.user.uid}`
+        )
+    },
+    imageClip(url, width = 512, height = 240) {
+      return url.replace(/(jpg)|(png)|(gif) \1 \2 \3/, '$1$2$3' + `@${width}w_${height}h_1e.webp`)
     }
   }
-};
+}
 </script>
 
 <style lang="stylus" scoped>
@@ -44,15 +53,11 @@ export default {
   margin-bottom: 0.266666rem
   .img_container
     width: 100%
-    padding-top: 8rem
+    height: 8rem
     border-radius: 0.133333rem 0.133333rem 0 0
     overflow: hidden
     position: relative
-    > img
-      position: absolute
-      top: 0
-      left: 0
-      width: 100%
+    background-size: cover !important
   .ill_name
     padding: 0.133333rem 0 0.133333rem 0.133333rem
   .drawer_intro
@@ -71,7 +76,7 @@ export default {
       .img_box
         width: 0.8rem
         height: 0.8rem
-        overflow hidden
+        overflow: hidden
         border-radius: 50%
         margin-right: 0.133333rem
         > img

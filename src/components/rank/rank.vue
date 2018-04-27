@@ -17,9 +17,9 @@
 </template>
 
 <script>
-import Card from "components/base/illustration_card/card";
-import {baseAxios} from "@/api/common";
-import Scroll from "components/base/scroll/scroll";
+import Card from 'components/base/illustration_card/card'
+import { baseAxios } from '@/api/common'
+import Scroll from 'components/base/scroll/scroll'
 export default {
   components: {
     Card,
@@ -30,37 +30,37 @@ export default {
       rank: undefined,
       cate_index: 0,
       rank_active: undefined
-    };
+    }
   },
   created() {
     baseAxios.get(`/rank`).then(res => {
-      this.rank = res.data;
-      this.rank_active = res.data.month.data.items;
-    });
+      this.rank = res.data
+      this.rank_active = res.data.month.data.items
+    })
   },
   methods: {
     changeCate(index) {
       if (index === this.cate_index) {
-        return;
+        return
       }
-      this.cate_index = index;
+      this.cate_index = index
       switch (this.cate_index) {
         case 0:
-          this.rank_active = this.rank.month.data.items;
-          break;
+          this.rank_active = this.rank.month.data.items
+          break
         case 1:
-          this.rank_active = this.rank.week.data.items;
-          break;
+          this.rank_active = this.rank.week.data.items
+          break
         case 2:
-          this.rank_active = this.rank.day.data.items;
-          break;
+          this.rank_active = this.rank.day.data.items
+          break
         default:
-          return;
-          break;
+
+          break
       }
     }
   }
-};
+}
 </script>
 
 <style lang="stylus" scoped>
@@ -94,7 +94,7 @@ export default {
     left: 0
     right: 0
     bottom: 0
-    overflow hidden
+    overflow: hidden
     .rank
       padding: 0 0.266666rem 0.266666rem
       box-sizing: border-box

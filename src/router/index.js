@@ -1,31 +1,32 @@
-import Vue from 'vue';
-import Router from 'vue-router';
+import Vue from 'vue'
+import Router from 'vue-router'
 const Paint = (r) => {
   import('components/paint/paint').then(paint => {
-    r(paint);
-  });
+    r(paint)
+  })
 }
+// import Paint from 'components/paint/paint'
 const PaintDetail = (r) => {
   import('components/paintdetail/paintdetail').then(paintdetail => {
-    r(paintdetail);
-  });
+    r(paintdetail)
+  })
 }
 const DrawerDetail = (r) => {
   import('components/drawerdetail/drawerdetail').then(drawerdetail => {
-    r(drawerdetail);
-  });
+    r(drawerdetail)
+  })
 }
 const Rank = (r) => {
   import('components/rank/rank').then(rank => {
-    r(rank);
-  });
+    r(rank)
+  })
 }
 const Activity = (r) => {
   import('components/activity/activity').then(activity => {
-    r(activity);
-  });
+    r(activity)
+  })
 }
-Vue.use(Router);
+Vue.use(Router)
 
 export default new Router({
   routes: [
@@ -48,7 +49,7 @@ export default new Router({
             {
               path: 'detail/:id',
               component: PaintDetail
-            }           
+            }
           ]
         }
       ]
@@ -58,7 +59,7 @@ export default new Router({
       component: Rank,
       children: [
         {
-          path:'detail/:id/:uid',
+          path: 'detail/:id/:uid',
           component: PaintDetail
         }
       ]
@@ -68,4 +69,4 @@ export default new Router({
       component: Activity
     }
   ]
-});
+})

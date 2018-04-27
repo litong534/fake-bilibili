@@ -61,11 +61,11 @@
 </template>
 
 <script>
-import DHeader from "components/base/header/header";
-import Loading from "components/base/loading/loading";
-import CTitle from "components/base/c-title/c-title";
-import {baseAxios} from "@/api/common";
-import Scroll from "components/base/scroll/scroll";
+import DHeader from 'components/base/header/header'
+import Loading from 'components/base/loading/loading'
+import CTitle from 'components/base/c-title/c-title'
+import { baseAxios } from '@/api/common'
+import Scroll from 'components/base/scroll/scroll'
 export default {
   components: {
     Loading,
@@ -79,42 +79,43 @@ export default {
       user: undefined,
       drawerill: undefined,
       show: false
-    };
+    }
   },
   created() {
     baseAxios.get(`/drawerdetail?uid=${this.$route.params.uid}`).then(res => {
       if (res.data.code === 0) {
-        this.drawerDetail = res.data.data;
+        this.drawerDetail = res.data.data
       }
-    });
+    })
 
     baseAxios.get(`/user?uid=${this.$route.params.uid}`).then(res => {
       if (res.data.code === 0) {
-        this.user = res.data.data;
+        this.user = res.data.data
       }
-    });
+    })
 
     baseAxios
       .get(`/drawerillustration?uid=${this.$route.params.uid}`)
       .then(res => {
         if (res.data.code === 0) {
-          this.drawerill = res.data.data.items;
+          this.drawerill = res.data.data.items
         }
-      });
+      })
 
-    this.resizeIllustration();
+    this.resizeIllustration()
   },
   methods: {
     onScroll(pos) {
-      let fix = this.$refs.d_fix;
-      let timer;
+      let fix = this.$refs.d_fix
       if (-pos.y >= 225) {
-        this.show = true;
-        fix ? (fix.style.opacity = 1) : "";
+        this.show = true
+        if (fix) {
+          fix.style.opacity = 1
+        }
       } else if (-pos.y < 225) {
         if (fix && this.show) {
-          fix.style.opacity = 0;
-          this.show = false;
+          fix.style.opacity = 0
+          this.show = false
         }
       }
     },
@@ -127,24 +128,22 @@ export default {
         )
         .then(res => {
           if (res.data.code === 0) {
-            this.user.feed.is_followed = !this.user.feed.is_followed;
+            this.user.feed.is_followed = !this.user.feed.is_followed
           }
-        });
+        })
     },
     resizeIllustration() {
-      const deviceWidth =
-        document.body.clientWidth || document.documentElement.clientWidth;
-        this.img_width = (document.body.clientWidth - 30) / 3;
-        this.containerWidth = this.img_width * 3 + 30;
+      this.img_width = (document.body.clientWidth - 30) / 3
+      this.containerWidth = this.img_width * 3 + 30
     },
     mathFormatter() {
-      return (225 - this.$refs.main.scrollTop) / 225;
+      return (225 - this.$refs.main.scrollTop) / 225
     },
-    showDetail(doc_id) {
-      this.$router.push(`/paint/drawer/${this.user.uid}/detail/${doc_id}`);
+    showDetail(docId) {
+      this.$router.push(`/paint/drawer/${this.user.uid}/detail/${docId}`)
     }
   }
-};
+}
 </script>
 
 <style lang="stylus" scoped>
@@ -186,8 +185,7 @@ export default {
       justify-content: center
       align-items: center
       margin: 0 auto
-      .uname
-      .grp
+      .uname, .grp
         margin-top: 0.266666rem
         &.grp_feed
           text-align: center

@@ -81,12 +81,12 @@
 </template>
 
 <script>
-import DHeader from "components/base/header/header";
-import Loading from "components/base/loading/loading";
-import Scroll from "components/base/scroll/scroll";
-import CTitle from "components/base/c-title/c-title";
-import { getComments } from "@/api/comment.js";
-import {baseAxios} from "@/api/common";
+import DHeader from 'components/base/header/header'
+import Loading from 'components/base/loading/loading'
+import Scroll from 'components/base/scroll/scroll'
+import CTitle from 'components/base/c-title/c-title'
+import { getComments } from '@/api/comment.js'
+import { baseAxios } from '@/api/common'
 export default {
   components: {
     Loading,
@@ -100,30 +100,30 @@ export default {
       user: undefined,
       comments: undefined,
       is404: false
-    };
+    }
   },
   created() {
     baseAxios
       .get(`/illustration/detail?doc_id=${this.$route.params.id}`)
       .then(res => {
         if (res.data.code === 0) {
-          this.detail = res.data.data;
+          this.detail = res.data.data
         } else if (res.data.code === 110001) {
-          this.is404 = true;
+          this.is404 = true
         }
-      });
+      })
 
     baseAxios.get(`/user?uid=${this.$route.params.uid}`).then(res => {
       if (res.data.code === 0) {
-        this.user = res.data.data;
+        this.user = res.data.data
       }
-    });
+    })
 
     getComments(this.$route.params.id).then(res => {
-      this.comments = res.data;
-    });
+      this.comments = res.data
+    })
   }
-};
+}
 </script>
 
 <style lang="stylus" scoped>
