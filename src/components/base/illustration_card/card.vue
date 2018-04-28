@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { imageClip } from 'common/js/utils'
 export default {
   props: {
     illdata: {
@@ -28,6 +29,7 @@ export default {
     }
   },
   methods: {
+    imageClip,
     ill_detail() {
       this.isRank
         ? this.$router.push(
@@ -36,9 +38,6 @@ export default {
         : this.$router.push(
           `/paint/detail/${this.illdata.item.doc_id}/${this.illdata.user.uid}`
         )
-    },
-    imageClip(url, width = 512, height = 240) {
-      return url.replace(/(jpg)|(png)|(gif) \1 \2 \3/, '$1$2$3' + `@${width}w_${height}h_1e.webp`)
     }
   }
 }

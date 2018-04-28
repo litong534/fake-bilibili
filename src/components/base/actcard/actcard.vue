@@ -2,7 +2,7 @@
   <a :href="actdata.link">
     <div id="actcard">
       <div class="img_container">
-        <img :src="imageClip(actdata.cover)" alt="">
+        <img :src="imageClip(actdata.cover, 512, 240)" alt="">
         <div class="fin">{{actdata.desc}}</div>
       </div>
       <div class="act_intro">
@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import { imageClip } from 'common/js/utils'
 export default {
   props: {
     actdata: {
@@ -22,9 +23,7 @@ export default {
     }
   },
   methods: {
-    imageClip(url, width = 512, height = 240) {
-      return url.replace(/(jpg)|(png)|(gif) \1 \2 \3/, '$1$2$3' + `@${width}w_${height}h_1e.webp`)
-    },
+    imageClip,
     timeFormat(time) {
       let date = new Date(parseInt(time) * 1000).toLocaleDateString()
       let dateArr = date.split('/')

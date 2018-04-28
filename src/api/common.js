@@ -10,7 +10,7 @@ let baseAxios
 
 if (process.env.NODE_ENV === 'production') {
   baseAxios = axios.create({
-    baseURL: '<your server request url>',
+    baseURL: 'http://47.95.250.143:3001/api/bilibili/api/',
     timeout: 5000
   })
 } else {

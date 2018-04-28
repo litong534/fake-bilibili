@@ -45,7 +45,7 @@
               <div class="comments">
                 <div class="comment_box" v-if="comments.replies || comments.replies.length !== 0" v-for="c in comments.replies" :key="c.key">
                   <div class="img_container">
-                    <img :src="c.member.avatar" alt="">
+                    <img :src="imageClip(c.member.avatar, 100, 100)" alt="">
                   </div>
                   <div class="content">
                     <div class="user_box">
@@ -56,7 +56,7 @@
                     <div class="replies" v-if="c.replies" v-for="r in c.replies" :key="r.key">
                       <div class="comment_box">
                         <div class="img_container">
-                          <img :src="r.member.avatar" alt="">
+                          <img :src="imageClip(r.member.avatar, 100, 100)" alt="">
                         </div>
                         <div class="content">
                           <div class="user_box">
@@ -85,6 +85,7 @@ import DHeader from 'components/base/header/header'
 import Loading from 'components/base/loading/loading'
 import Scroll from 'components/base/scroll/scroll'
 import CTitle from 'components/base/c-title/c-title'
+import { imageClip } from 'common/js/utils'
 import { getComments } from '@/api/comment.js'
 import { baseAxios } from '@/api/common'
 export default {
@@ -122,6 +123,9 @@ export default {
     getComments(this.$route.params.id).then(res => {
       this.comments = res.data
     })
+  },
+  methods: {
+    imageClip
   }
 }
 </script>
