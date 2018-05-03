@@ -4,7 +4,9 @@
       <img v-if="needsBack" src="~@/assets/left_arrow.png" width="25" style="padding-left:10px" @click="goBack" alt="">
     </div>
     <div>{{title}}</div>
-    <div class="space"></div>
+    <div class="space" style="overflow: hidden">
+      <router-link v-if="needsSearch" to="/search" tag="div"><img src="~@/assets/search.png" width="25" style="float: right;margin-right:10px" alt=""></router-link>
+    </div>
   </div>
 </template>
 
@@ -18,6 +20,10 @@ export default {
     needsBack: {
       type: Boolean,
       default: false
+    },
+    needsSearch: {
+      type: Boolean,
+      default: true
     }
   },
   methods: {

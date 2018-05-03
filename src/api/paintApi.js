@@ -26,21 +26,21 @@ function initApi(app) {
       res.json(response.data)
     }).catch(e => console.log(e))
   })
-  //not in use yet
+  // not in use yet
   app.get('/api/activity', (req, res) => {
     axios.get('http://api.vc.bilibili.com/photo_activity/v2/Activity/list?type=0&biz=1&page_size=3')
       .then(response => {
         res.json(response.data)
       }).catch(e => console.log(e))
   })
-  //recommend drawer data request
+  // recommend drawer data request
   app.get('/api/drawer', (req, res) => {
     axios.get('http://api.vc.bilibili.com/link_draw/v2/Doc/drawer?num=6')
       .then(response => {
         res.json(response.data)
       }).catch(e => console.log(e))
   })
-  //recommend illustration data request with infinity loading
+  //  recommend illustration data request with infinity loading
   app.get('/api/recommends', (req, res) => {
     const pageNum = req.query.page
     axios.get(`https://api.vc.bilibili.com/link_draw/v2/Doc/list?category=all&type=hot&page_num=${pageNum}&page_size=30`)
@@ -48,7 +48,7 @@ function initApi(app) {
         res.json(response.data)
       }).catch(e => console.log(e))
   })
-  //illustration detail data request
+  // illustration detail data request
   app.get('/api/illustration/detail', (req, res) => {
     const doc_id = req.query.doc_id
     axios.get(`http://api.vc.bilibili.com/link_draw/v1/doc/detail?doc_id=${doc_id}`)
@@ -56,7 +56,7 @@ function initApi(app) {
         res.json(response.data)
       }).catch(e => console.log(e))
   })
-  //user data request query with uid
+  // user data request query with uid
   app.get('/api/user', (req, res) => {
     const uid = req.query.uid
     axios({
@@ -68,7 +68,7 @@ function initApi(app) {
         res.json(response.data)
       }).catch(e => console.log(e))
   })
-  //drawer homepage data requrest
+  // drawer homepage data requrest
   app.get('/api/drawerdetail', (req, res) => {
     const uid = req.query.uid
     axios({
@@ -80,7 +80,7 @@ function initApi(app) {
         res.json(response.data)
       }).catch(e => console.log(e))
   })
-  //focus/unfocus request
+  // focus/unfocus request
   app.get('/api/attention', (req, res) => {
     const { uid, type } = req.query
     axios({
@@ -89,7 +89,7 @@ function initApi(app) {
       data: {
         'uid': uid,
         'token': '',
-        'type': type, // 0-unfocus;1-focus
+        'type': type, //  0-unfocus;1-focus
         'platform': 'pc',
         'csrf_token': '319f8150f75edad66575731b9af8c0ba'
       },
@@ -111,7 +111,7 @@ function initApi(app) {
       res.json(response.data)
     }).catch(e => console.log(e))
   })
-  //drawer homepage illustration data requrest
+  // drawer homepage illustration data requrest
   app.get('/api/drawerillustration', (req, res) => {
     const uid = req.query.uid
     axios({
@@ -123,8 +123,6 @@ function initApi(app) {
         res.json(response.data)
       }).catch(e => console.log(e))
   })
-
-
 }
 
 module.exports = initApi

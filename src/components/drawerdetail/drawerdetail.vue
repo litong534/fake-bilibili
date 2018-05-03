@@ -102,7 +102,8 @@ export default {
           this.drawerill = res.data.data.items
         }
       })
-
+  },
+  mounted() {
     this.resizeIllustration()
   },
   methods: {
