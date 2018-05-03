@@ -1,6 +1,6 @@
 <template>
   <div id="card" @click="ill_detail">
-    <div class="img_container" :style="`background:url(${imageClip(illdata.item.pictures[0].img_src)}) no-repeat`">
+    <div class="img_container" :style="`background:url(${imageClip(illdata.item.pictures[0].img_src, 300, 200)}) no-repeat`">
       <!-- <img :src="illdata.item.pictures[0].img_src" alt=""> -->
     </div>
     <div class="ill_name">{{illdata.item.title}}</div>

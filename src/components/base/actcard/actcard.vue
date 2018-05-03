@@ -2,7 +2,7 @@
   <a :href="actdata.link">
     <div id="actcard">
       <div class="img_container">
-        <img :src="imageClip(actdata.cover, 512, 240)" alt="">
+        <img :src="imageClip(actdata.cover, 300, 200)" alt="">
         <div class="fin">{{actdata.desc}}</div>
       </div>
       <div class="act_intro">

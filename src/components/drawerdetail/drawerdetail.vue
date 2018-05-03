@@ -15,14 +15,14 @@
         </div>
         <div class="focus_btn" @click="focus" :class="user.feed.is_followed ? 'unfocus_btn': ''">{{user.feed.is_followed ? '取消关注' : '关注'}}</div>
       </div>
-      <scroll :probeType="3" :listen-scroll="true" @scrollEnd="onScrollEnd" class="main" ref="main" @scroll="onScroll" v-if="drawerDetail && user && drawerill">
+      <scroll :probeType="3" :listen-scroll="true" class="main" ref="main" @scroll="onScroll" v-if="drawerDetail && user && drawerill">
         <div ref="scroll">
           <div ref="d_cont" class="drawer_container">
             <div class="drawer_bg">
-              <img :src="drawerDetail.face" alt="">
+              <img :src="imageClip(drawerDetail.face, 200, 200)" alt="">
             </div>
             <div ref="circle" class="drawer_circle">
-              <img :src="drawerDetail.face" alt="">
+              <img :src="imageClip(drawerDetail.face, 200, 200)" alt="">
             </div>
             <div ref="uinfo" class="userinfo">
               <span class="uname">{{drawerDetail.uname}}</span>
@@ -49,7 +49,7 @@
           <c-title>相簿</c-title>
           <div class="illustration" :style="{'width': `${containerWidth}px`}">
             <div class="img_container" :style="{'width': `${img_width}px`, 'height': `${img_width}px`}" @click="showDetail(item.doc_id)" v-for="item in drawerill" :key="item.key">
-              <img class="ill" :src="item.pictures[0].img_src" alt="">
+              <img class="ill" :src="imageClip(item.pictures[0].img_src, `${img_width}`, `${img_width}`)" alt="">
             </div>
           </div>
         </div>
@@ -61,6 +61,7 @@
 </template>
 
 <script>
+import { imageClip } from 'common/js/utils'
 import DHeader from 'components/base/header/header'
 import Loading from 'components/base/loading/loading'
 import CTitle from 'components/base/c-title/c-title'
@@ -141,7 +142,8 @@ export default {
     },
     showDetail(docId) {
       this.$router.push(`/paint/drawer/${this.user.uid}/detail/${docId}`)
-    }
+    },
+    imageClip
   }
 }
 </script>

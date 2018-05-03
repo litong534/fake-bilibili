@@ -8,7 +8,7 @@
             <div class="panel">
               <div class="drawer">
                 <div class="img_container">
-                  <img :src="detail.user.head_url" alt="">
+                  <img :src="imageClip(detail.user.head_url, 100, 100)" alt="">
                 </div>
                 <div class="drawer_name">{{detail.user.name}}</div>
                 <span class="drawer_level">UP {{user.user.master_level}}</span>
@@ -21,15 +21,16 @@
                     <a :href="tag.link">{{tag.text}}</a>
                   </span>
                 </div>
-                <div class="imgs">
-                  <img style="width: 100%;margin: 0 auto;display: block;margin-bottom:0.266666rem" v-for="pic in detail.item.pictures" v-lazy="pic.img_src" :key="pic.key" alt="">
+                <div>
+                  <image-l-container v-for="(pic, index) in detail.item.pictures" :imgSrc="pic.img_src" :key="index">
+                  </image-l-container>
                 </div>
               </div>
               <c-title>热门评论</c-title>
               <div class="comments">
                 <div class="comment_box" v-if="comments.hots || comments.hots.length !== 0" v-for="c in comments.hots" :key="c.key">
                   <div class="img_container">
-                    <img :src="c.member.avatar" alt="">
+                    <img :src="imageClip(c.member.avatar, 100, 100)" alt="">
                   </div>
                   <div class="content">
                     <div class="user_box">
@@ -88,12 +89,14 @@ import CTitle from 'components/base/c-title/c-title'
 import { imageClip } from 'common/js/utils'
 import { getComments } from '@/api/comment.js'
 import { baseAxios } from '@/api/common'
+import ImageLContainer from 'components/paintdetail/imageLoadedContainer'
 export default {
   components: {
     Loading,
     DHeader,
     Scroll,
-    CTitle
+    CTitle,
+    ImageLContainer
   },
   data() {
     return {
