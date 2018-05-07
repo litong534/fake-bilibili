@@ -1,7 +1,8 @@
 # fake-bilibili
 ## 背景
 前几天无意中发现bilibili的子站使用了vue框架进行开发，所以本着研（xie）究（e）的态度，做了一款移动端的app
-
+## 预览地址
+http://rozwel.club/bilibili
 ## 如何欺骗
 主要的欺骗技术有以下几点
 * 设置meta标签`no-referer`来避免图片跨域的403错误
