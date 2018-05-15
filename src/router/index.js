@@ -46,7 +46,8 @@ export default new Router({
       children: [
         {
           path: 'detail/:id/:uid',
-          component: PaintDetail
+          component: PaintDetail,
+          meta: {dontKeepAlive: true}
         },
         {
           path: 'drawer/:uid',

@@ -5,7 +5,7 @@
     </div>
     <div>{{title}}</div>
     <div class="space" style="overflow: hidden">
-      <router-link v-if="needsSearch" to="/search" tag="div"><img src="~@/assets/search.png" width="25" style="float: right;margin-right:10px" alt=""></router-link>
+      <router-link v-if="needsSearch && checkRoute" to="/search" tag="div"><img src="~@/assets/search.png" width="25" style="float: right;margin-right:10px" alt=""></router-link>
     </div>
   </div>
 </template>
@@ -26,9 +26,21 @@ export default {
       default: true
     }
   },
+  data() {
+    return {
+      checkRoute: false
+    }
+  },
   methods: {
     goBack() {
       this.$router.go(-1)
+    }
+  },
+  watch: {
+    $route(newRoute, oldRoute) {
+      if (/^(\/paint|\/rank|\/activity)$/.test(newRoute.path)) {
+        this.checkRoute = true
+      }
     }
   }
 }

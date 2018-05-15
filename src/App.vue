@@ -2,7 +2,10 @@
   <div id="app" @touchmove.prevent>
     <b-header/>
     <tab/>
-    <router-view></router-view>
+    <keep-alive>
+      <router-view v-if="!$route.meta.dontKeepAlive"></router-view>
+    </keep-alive>
+    <router-view v-if="$route.meta.dontKeepAlive"></router-view>
   </div>
 </template>
 
