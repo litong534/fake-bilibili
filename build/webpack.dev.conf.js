@@ -23,9 +23,10 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   // these devServer options should be customized in /config/index.js
   devServer: {
     before(app) {
-      api.paintApi(app);
-      api.rankApi(app);
-      api.actApi(app);
+      api.paintApi(app)
+      api.rankApi(app)
+      api.actApi(app)
+      api.searchApi(app)
     },
     clientLogLevel: 'warning',
     historyApiFallback: {

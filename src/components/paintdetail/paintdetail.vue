@@ -87,7 +87,6 @@ import Loading from 'components/base/loading/loading'
 import Scroll from 'components/base/scroll/scroll'
 import CTitle from 'components/base/c-title/c-title'
 import { imageClip } from 'common/js/utils'
-import { getComments } from '@/api/comment.js'
 import { baseAxios } from '@/api/common'
 import ImageLContainer from 'components/paintdetail/imageLoadedContainer'
 export default {
@@ -123,8 +122,8 @@ export default {
       }
     })
 
-    getComments(this.$route.params.id).then(res => {
-      this.comments = res.data
+    baseAxios.get(`/comments?cid=${this.$route.params.id}`).then(res => {
+      this.comments = res.data.data
     })
   },
   methods: {

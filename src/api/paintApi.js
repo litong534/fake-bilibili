@@ -118,10 +118,28 @@ function initApi(app) {
       url: `https://api.vc.bilibili.com/link_draw/v1/doc/ones?poster_uid=${uid}&page_size=20&next_offset=0&noFav=1&noLike=1&platform=pc`,
       method: 'get',
       headers: common.HEADERS
+    }).then(response => {
+      res.json(response.data)
+    }).catch(e => console.log(e))
+  })
+
+  app.get(`/api/comments`, (req, res) => {
+    const cid = req.query.cid
+    axios({
+      url: `https://api.bilibili.com/x/v2/reply?callback=__jp0&jsonp=jsonp&pn=1&type=11&oid=${cid}&sort=0&_=1527493121464`,
+      method: 'get',
+      headers: {
+        'Host': 'api.bilibili.com',
+        'Referer': `https://h.bilibili.com/${cid}`
+      }
+    }).then(response => {
+      let obj = {}
+      const __jp0 = function(callbackData) {
+        obj = callbackData
+      }
+      eval(response.data)
+      res.json(obj)
     })
-      .then(response => {
-        res.json(response.data)
-      }).catch(e => console.log(e))
   })
 }
 

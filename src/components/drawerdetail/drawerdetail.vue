@@ -135,7 +135,7 @@ export default {
         })
     },
     resizeIllustration() {
-      this.img_width = (document.body.clientWidth - 30) / 3
+      this.img_width = ((document.body.clientWidth - 30) / 3) | 0
       this.containerWidth = this.img_width * 3 + 30
     },
     mathFormatter() {

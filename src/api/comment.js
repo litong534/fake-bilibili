@@ -4,18 +4,11 @@ export function getComments(oid) {
   const url = 'https://api.bilibili.com/x/v2/reply'
 
   const data = {
-    callback: 'jsonpCallback',
     jsonp: 'jsonp',
-    pn: 1,
+    sort: 2,
     type: 11,
-    oid,
-    sort: 0,
-    _: 1517899289437
+    oid
   }
 
-  const options = {
-    name: 'jsonpCallback'
-  }
-
-  return jsonp(url, data, options)
+  return jsonp(url, data, {})
 }
