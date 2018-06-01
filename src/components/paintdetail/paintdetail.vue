@@ -90,6 +90,7 @@ import { imageClip } from 'common/js/utils'
 import { baseAxios } from '@/api/common'
 import ImageLContainer from 'components/paintdetail/imageLoadedContainer'
 export default {
+  name: 'paintDetail',
   components: {
     Loading,
     DHeader,
@@ -128,6 +129,34 @@ export default {
   },
   methods: {
     imageClip
+  },
+  watch: {
+    $route() {
+      this.detail = undefined
+      this.user = undefined
+      this.comments = undefined
+      Promise.all([
+        baseAxios
+          .get(`/illustration/detail?doc_id=${this.$route.params.id}`)
+          .then(res => {
+            if (res.data.code === 0) {
+              this.detail = res.data.data
+            } else if (res.data.code === 110001) {
+              this.is404 = true
+            }
+          }),
+
+        baseAxios.get(`/user?uid=${this.$route.params.uid}`).then(res => {
+          if (res.data.code === 0) {
+            this.user = res.data.data
+          }
+        }),
+
+        baseAxios.get(`/comments?cid=${this.$route.params.id}`).then(res => {
+          this.comments = res.data.data
+        })
+      ])
+    }
   }
 }
 </script>
